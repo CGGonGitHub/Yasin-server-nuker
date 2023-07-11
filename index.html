@@ -1,0 +1,105 @@
+<!-- https://discord.gg/4wnXrEKhgT -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Yasin's Server Webhook Sender</title>
+        <style>
+            body {
+                background-color: #393939;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                height: 100%;
+            }
+
+            .imageURL {
+                width: 30%;
+                height: 3.5%;
+                position: absolute;
+                top: 75.88%;
+                border-radius: 20px;
+                border-width: 10px;
+                border-style: solid;
+                border-color: black;
+                font-size: 200%;
+                text-align: center;
+            }
+
+            .textName {
+                width: 65%;
+                height: 5%;
+                position: absolute;
+                top: 18.85%;
+                border-radius: 20px;
+                border-width: 10px;
+                border-style: solid;
+                border-color: black;
+                font-size: 200%;
+                text-align: center;
+            }
+
+
+            .textField {
+                width: 75%;
+                height: 50%;
+                position: absolute;
+                top: 25%;
+                border-radius: 100px;
+                border-width: 10px;
+                border-style: solid;
+                border-color: black;
+                font-size: 200%;
+                text-align: center;
+            }
+
+
+            .textbutton {
+                position: absolute;
+                top: 85%;
+                font-size: 250%;
+                font-weight: 900;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                padding-left: 5%;
+                padding-right: 5%;
+                padding-top: 1%;
+                padding-bottom: 1%;
+                border-radius: 25px;
+                border-width: 7px;
+                border-color: red;
+            }
+        </style>>
+        <script>
+            let button = document.getElementById("sendButton")
+
+            function sendMessage() {
+                /* Make Button Green */
+
+                /* Variables */
+                inputUsername = document.getElementById("inputName").value
+                inputContent = document.getElementById("inputContent").value
+                inputURL = document.getElementById("inputURL").value
+
+                /* Webhook Request*/
+                const request = new XMLHttpRequest();
+                request.open("POST", "https://discord.com/api/webhooks/1128393813870792734/UZhlTVnLBn6vb22WrZbXL3ayZMgiTWE1pkA2ydml3pSS3jrkj_EVdGJnkDrz5LFXinea");
+
+                request.setRequestHeader('Content-type', 'application/json');
+
+                const params = {
+                    username: inputUsername,
+                    avatar_url: inputURL,
+                    content: inputContent
+                }
+
+                request.send(JSON.stringify(params));
+            }
+        </script>
+    </head>
+    <body>
+        <input class="textName" type="text" id="inputName" name="textName" maxlength="50" placeholder="Username of the Webhook..." value="Username of the Webhook...">
+        <input class="textField" type="text" id="inputContent" name="textField" maxlength="4000" placeholder="Text goes here..." value="Text goes here...">
+        <button class="textbutton" onclick="sendMessage()">Send!</button>
+    </body>
+</html>
